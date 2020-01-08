@@ -36,13 +36,20 @@
                 <c:url var="updateLink" value="/customer/showFormForUpdate">
                     <c:param name="customerId" value="${temp.id}"/>
                 </c:url>
+                <%--                construct an 'delete' link with customer id--%>
+                <c:url var="deleteLink" value="/customer/delete">
+                    <c:param name="customerId" value="${temp.id}"/>
+                </c:url>
+
 
                 <tr>
                     <td>${temp.firstName}</td>
                     <td>${temp.lastName}</td>
                     <td>${temp.email}</td>
                         <%--                    display the update link--%>
-                    <td><a href="${updateLink}">Edit</a></td>
+                    <td><a href="${updateLink}">Edit</a>
+                        |
+                        <a href="${deleteLink}" onclick="if (!(confirm('Delete?'))) return false">Delete</a></td>
                 </tr>
 
             </c:forEach>

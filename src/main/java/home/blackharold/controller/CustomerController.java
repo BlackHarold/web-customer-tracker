@@ -57,7 +57,6 @@ public class CustomerController {
     @GetMapping("/showFormForUpdate")
     public String updateCustomer(@RequestParam("customerId") int id, Model model) {
 
-        System.out.println("customer id: " + id);
 //        get the customer from service
         Customer customer = customerService.getCustomer(id);
 
@@ -66,5 +65,11 @@ public class CustomerController {
 
 //        send over to out form
         return "customer-form";
+    }
+
+    @GetMapping("/delete")
+    public String deleteCustomer(@RequestParam("customerId") int id, Model model) {
+        customerService.deleteCustomer(id);
+        return "redirect:/customer/list";
     }
 }
