@@ -50,21 +50,18 @@
 
             <tr>
                 <td><label></label></td>
-                <td><input type="button" value="Save" class="save"/></td>
+                <td><input type="submit" value="Save" class="save"/></td>
             </tr>
 
 
             </tbody>
         </table>
-
-
     </form:form>
 
 <%--    <div style="clear; both;"></div>--%>
-
     <p>
 <%--        <a href="${pageContext.request.contextPath}/customer/list">Back to List</a>--%>
-        <input type="button" value="Return"
+        <input type="button" value="Back to List"
                onclick="window.location.href='list'; return false;" class="add-button">
     </p>
 

@@ -5,9 +5,7 @@ import home.blackharold.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -44,6 +42,29 @@ public class CustomerController {
         Customer customer = new Customer();
         model.addAttribute("customer", customer);
 
+        return "customer-form";
+    }
+
+    @PostMapping("/saveCustomer")
+    public String saveCustomer(@ModelAttribute("customer") Customer customer) {
+
+//        save the customer
+        customerService.saveCustomer(customer);
+
+        return "redirect:/customer/list";
+    }
+
+    @GetMapping("/showFormForUpdate")
+    public String updateCustomer(@RequestParam("customerId") int id, Model model) {
+
+        System.out.println("customer id: " + id);
+//        get the customer from service
+        Customer customer = customerService.getCustomer(id);
+
+//        set customer as a model attribute to pre-populate the form
+        model.addAttribute("customer", customer);
+
+//        send over to out form
         return "customer-form";
     }
 }

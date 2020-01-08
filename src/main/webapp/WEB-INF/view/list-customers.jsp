@@ -19,8 +19,8 @@
     <div id="content">
 
         <%--        put new button: Add customer--%>
-            <input type="button" value="Add customer"
-                   onclick="window.location.href='showFormForAdd'; return false;" class="add-button">
+        <input type="button" value="Add customer"
+               onclick="window.location.href='showFormForAdd'; return false;" class="add-button">
 
         <%--            add html table--%>
         <table>
@@ -28,13 +28,23 @@
                 <th>First name</th>
                 <th>Last name</th>
                 <th>E-mail</th>
+                <th>Action</th>
             </tr>
             <c:forEach var="temp" items="${customers}">
+
+                <%--                construct an 'update' link with customer id--%>
+                <c:url var="updateLink" value="/customer/showFormForUpdate">
+                    <c:param name="customerId" value="${temp.id}"/>
+                </c:url>
+
                 <tr>
                     <td>${temp.firstName}</td>
                     <td>${temp.lastName}</td>
                     <td>${temp.email}</td>
+                        <%--                    display the update link--%>
+                    <td><a href="${updateLink}">Edit</a></td>
                 </tr>
+
             </c:forEach>
         </table>
 
